@@ -1,0 +1,41 @@
+Forward Declare:
+    Compiler needs to know the size of type before using it.
+    eg: circular reference: a struct containing a pointer to itself. 1st and 3rd works, 2nd fails
+    typedef struct foo {} foo;
+    typedef struct foo {};
+    typdef struct foo foo;
+
+Declaring a pointer to a type or Value in struct:
+    eg:
+    typedef struct {
+        Table map vs Table* map;
+    } foo;
+
+    Declaring by value signals ownership and lifetime.
+    Its members are present contiguous in memory inside foo.
+    Don't need to allocate/free memory for it separately.
+    More cache friendly
+    If it internally manages heap allocated memory, only that needs handling.
+
+    Declaring by pointer is good if the member has dynamic lifetime or shared.
+    Here foo only contains pointer to Table which is heap allocated.
+    Table is not explicitely owned by foo.
+    Indirection involved.
+    eg: changing map for foo.
+
+Sync Primitives:
+    pthreads
+        pthread_mutex_t
+            pthread_mutex_t lock;
+            pthread_mutex_init(&lock)
+            pthread_mutex_lock(&lock)
+            pthread_mutex_unlock(&lock);
+        pthread_rwlock_t
+            pthread_rwlock_t lock;
+            pthread_rwlock_rdlock(&lock);   // for read
+            pthread_rwlock_wrlock(&lock);   // for write
+            pthread_rwlock_unlock(&lock);
+        pthread_spinlock_t
+        pthread_cond_t
+        pthread_once_t
+        pthread_barrier_t

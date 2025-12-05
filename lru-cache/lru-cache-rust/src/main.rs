@@ -1,7 +1,5 @@
-use crate::lrucache::LRUCache;
-
-mod lrucache;
-mod lrucache_threadsafe;
+// mod lrucache_threadsafe;
+use lrucacherust::LRUCache;
 
 fn main() {
     let mut lru_cache = LRUCache::new(2);

@@ -92,3 +92,20 @@ impl LRUCache {
         self.head.borrow_mut().right = Some(node.clone());
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use crate::LRUCache;
+
+    fn setup() -> LRUCache {
+        LRUCache::new(10)
+    }
+
+    #[test]
+    fn test_lrucache_get_set() {
+        let mut cache = setup();
+        cache.set(String::from("nitish"), String::from("sharma"));
+        let ans = cache.get("nitish").unwrap();
+        assert_eq!(ans, String::from("sharma"));
+    }
+}

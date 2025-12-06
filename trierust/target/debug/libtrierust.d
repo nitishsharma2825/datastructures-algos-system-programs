@@ -1,0 +1,1 @@
+/home/nitish/datastructures-algos-system-programs/trierust/target/debug/libtrierust.rlib: /home/nitish/datastructures-algos-system-programs/trierust/src/lib.rs /home/nitish/datastructures-algos-system-programs/trierust/src/trie.rs

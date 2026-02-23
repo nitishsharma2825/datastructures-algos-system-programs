@@ -12,6 +12,22 @@ typedef struct Storage
 } Storage;
 
 /*
+    2nd way of Implementing using struct embedding: one less poitner deref and better locality
+
+    typedef struct Storage
+    {
+        const struct StorageOps *ops;   // Like vtable pointer
+    } Storage;
+
+    /// Memory Storage
+    struct memory_impl
+    {
+        Storage base;
+        char buffer[256];
+    };
+*/
+
+/*
     Interface methods are defined function pointers.
     Each concrete implementation defines a function with same syntax
 */
